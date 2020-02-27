@@ -16,6 +16,7 @@ namespace vezba2
             Console.WriteLine("1.Unesi");
             Console.WriteLine("2.Izmena");
             Console.WriteLine("3.stampaj");
+            Console.WriteLine("4.brisanje");
             Console.WriteLine("3.izadji");
         }
         static public (string,string,decimal) unos()
@@ -26,7 +27,20 @@ namespace vezba2
 
             return (unos[0], unos[1], decimal.Parse(unos[2]));
         }
+        static void brisanje()
+        {
+            stampaj();
+            Console.WriteLine("Unesi sifru artikla koji zelis da brises");
+            string x = Console.ReadLine();
+            foreach(Artikal p in Artikal.Artikli)
+            {
+                if (p.sifra == x)
+                {
+                    Artikal.Artikli.Remove(p);
+                }
+            }
 
+        }
 
         static void ispis()
         {
@@ -79,6 +93,9 @@ namespace vezba2
                         break;
                     case '3':
                         stampaj();
+                        break;
+                    case '4':
+                        brisanje();
                         break;
                     default:
                         Environment.Exit(2);
